@@ -8,56 +8,31 @@ def test_form():
     edge_driver_path = r"C:\Users\User\Desktop\Pyhton\pyhton\KhamitovRus_Pyhton-6\edgedriver_win64\msedgedriver.exe"
     driver = webdriver.Edge(service=EdgeService(edge_driver_path))
     driver.get("https://bonigarcia.dev/selenium-webdriver-java/data-types.html")
-    
-    driver.implicitly_wait(4)
-    
-    first_name = driver.find_element(By.CSS_SELECTOR, "[name='first-name']")
-    first_name.send_keys("Иван")
-    first_name.click()
-    
-    last_name = driver.find_element(By.CSS_SELECTOR, "[name='last-name']")
-    last_name.send_keys("Петров")
-    last_name.click()
-    
-    address_input = driver.find_element(By.CSS_SELECTOR, "[name='address']")
-    address_input.send_keys("Ленина, 55-3")
-    address_input.click()
-    
-    email_address = driver.find_element(By.CSS_SELECTOR, "[name='e-mail']")
-    email_address.send_keys("test@skypro.com")
-    email_address.click()
-    
-    phone_number = driver.find_element(By.CSS_SELECTOR, "[name='phone']")
-    phone_number.send_keys("+7985899998787")
-    phone_number.click()
-    
-    city_name = driver.find_element(By.CSS_SELECTOR, "[name='city']")
-    city_name.send_keys("Москва")
-    city_name.click()
-    
-    country_name = driver.find_element(By.CSS_SELECTOR, "[name='country']")
-    country_name.send_keys("Россия")
-    country_name.click()
-    
-    job_position = driver.find_element(By.CSS_SELECTOR, "[name='job-position']")
-    job_position.send_keys("QA")
-    job_position.click()
-    
-    company_name = driver.find_element(By.CSS_SELECTOR, "[name='company']")
-    company_name.send_keys("SkyPro")
-    company_name.click()
-    
-    submit_button = driver.find_element(By.CSS_SELECTOR, ".btn.btn-outline-primary")
-    submit_button.click()
-    
-    zip_code = driver.find_element(By.CSS_SELECTOR, "[name='zip-code']").value_of_css_property("background-color")
-    
-    assert zip_code == "#f8d7da"
-    fields = ["first-name", "last-name", "address", "email", "phone", "city", "country", "job", "company"]
-    
-    for field in fields:
-        field = driver.find_element(By.CSS_SELECTOR, "form-label").value_of_css_property("background-color")
-        assert field == "#d1e7dd"
-        driver.quit()
+    driver.maximize_window()
+
+    driver.find_element(By.CSS_SELECTOR, "input[name='first-name']").send_keys("Иван")
+    driver.find_element(By.CSS_SELECTOR, "input[name='last-name']").send_keys("Петров")
+    driver.find_element(By.CSS_SELECTOR, "input[name='address']").send_keys("Ленина, 55-3")
+    driver.find_element(By.CSS_SELECTOR, "input[name='e-mail']").send_keys("test@skypro.com")
+    driver.find_element(By.CSS_SELECTOR, "input[name='phone']").send_keys("+7985899998787")
+    driver.find_element(By.CSS_SELECTOR, "input[name='zip-code']").send_keys("")
+    driver.find_element(By.CSS_SELECTOR, "input[name='city']").send_keys("Москва")
+    driver.find_element(By.CSS_SELECTOR, "input[name='country']").send_keys("Россия")
+    driver.find_element(By.CSS_SELECTOR, "input[name='job-position']").send_keys("QA")
+    driver.find_element(By.CSS_SELECTOR, "input[name='company']").send_keys("SkyPro")
+
+    button = driver.find_element(By.CSS_SELECTOR, "button.btn.btn-outline-primary.mt-3")
+    driver.execute_script("arguments[0].scrollIntoView();", button)
+    driver.execute_script("arguments[0].click();", button)
+
+    zip_code = driver.find_element(By.ID, "zip-code").value_of_css_property("background-color")
+    assert zip_code == "rgba(248, 215, 218, 1)"
+
+    fields = ["first-name", "last-name", "address", "city", "country", "e-mail", "phone", "job-position", "company"]
+    for field_id in fields:
+        field = driver.find_element(By.ID, field_id).value_of_css_property("background-color")
+        assert field == "rgba(209, 231, 221, 1)"
+
+    driver.quit()
 
 
