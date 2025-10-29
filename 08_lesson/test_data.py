@@ -1,0 +1,15 @@
+LOGIN = "rus.khamitov.19@bk.ru"
+PASSWORD = "Rextyr91#@"
+NAME = "Руслан"
+COMPANY_ID = "095b7b93-0a28-4a00-98db-830c58014ee4"
+USER_UUID = "0bf53cd5-a3bc-4fac-a423-2bab036a675a"
+ADMIN_ROLE = "admin"
+NEW_TITLE = "New_Project_Test"
+TEST_USER = {USER_UUID: ADMIN_ROLE}
+TITLE_GET_TEST = "Get_Project_Test"
+TITLE_EDIT_TEST = "Edit_Project_Test"
+EDITED_TITLE = "Edited_Project_Test"
+DELETED_STATUS = False
+NEW_TITLE_NEGATIVE = ""
+USER_UUID_NEGATIVE = "95bb52b4-fa9e-44bd-80b3-84a437b66df"
+TEST_USER_NEGATIVE = {USER_UUID_NEGATIVE: ADMIN_ROLE}
